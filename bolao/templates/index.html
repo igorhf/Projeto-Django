@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if partidas %}
+
+<head>
+	<style type="text/css">
+		th ,td{border: 1px solid black;border-collapse: collapse;}
+		li{display: inline-block;font-size: 30px;margin-right: 5%}
+	</style>
+</head>
+<ol>
+	<li><a href="{% url 'aposta' %}">Aposta</a></li>
+	<li><a href="{% url 'login' %}">Lista de Partida</a></li>
+	<li><a href="{% url 'aposta' %}">Cadastro de Usuario</a></li>
+<hr>
+</ol>
+<h1 style="color: green">Lista de Partidas</h1>
+
+<hr>
+    <ul>
+    {% for partida in partidas %}
+        
+        <div style="border: none;">
+        <table style="width:100%;border: 1px solid black;border-collapse: collapse;">
+  <caption>Partida</caption>
+  <tr>
+    <th >Partida</th>
+    <th >Gol</th>
+    <th >Local da Partida</th>
+  </tr>
+  <tr>
+    <td >{{partida}}</td>
+    <td >{{partida.placar_time1}} X {{partida.placar_time2}}</td>
+    <td >{{partida.local}}</td>
+  </tr>
+  
+</table>
+        </div>
+
+        <!--<li><a style="font-size: 15px" href="/partida/{{ partida.id }}/">{{ partida }} <br> {{partida.placar_time1}} X {{partida.placar_time2}}<p></p>{{partida.local}}</a></li>-->
+       
+    {% endfor %}
+    </ul>
+
+<hr>
+
+{% else %}
+    <p>Sem partidas.</p>
+{% endif %}
+{% endblock %}
